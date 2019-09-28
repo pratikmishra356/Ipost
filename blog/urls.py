@@ -16,3 +16,4 @@ urlpatterns = [
     re_path('^post/(?P<pk>\d+)/publish/$',views.post_publish,name='post_publish'),
     path('register', views.register,name='register'),
 ]
+

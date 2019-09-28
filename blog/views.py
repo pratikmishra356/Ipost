@@ -63,6 +63,7 @@ class DraftListView(LoginRequiredMixin,ListView):
 def post_publish(request,pk):
     post = get_object_or_404(Post,pk=pk)
     post.publish()
+    
     return redirect('post_detail',pk=pk)
 
 
@@ -78,7 +79,7 @@ def add_comment_to_post(request,pk):
             comment.save()
             return redirect('post_detail',pk=post.pk)
     else:
-            form = CommentForm()
+        form = CommentForm()
 
     return render(request,'blog/comment_form.html',{'form':form})
 
