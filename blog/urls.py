@@ -14,6 +14,7 @@ urlpatterns = [
     re_path('^comment/(?P<pk>\d+)/approve/$',views.comment_approve,name='comment_approve'),
     re_path('^comment/(?P<pk>\d+)/remove/$',views.comment_remove,name='comment_remove'),
     re_path('^post/(?P<pk>\d+)/publish/$',views.post_publish,name='post_publish'),
+    re_path('^post/(?P<pk>\d+)/like/$',views.like_post,name='like_post'),
     path('register', views.register,name='register'),
 ]
 
