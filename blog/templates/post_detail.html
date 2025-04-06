@@ -1,0 +1,41 @@
+<!-- HTML Structure for Blog Post Detail -->
+{% extends "base_generic.html" %}
+  
+{% block content %}
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.text }}</p>
+  <img src="{{ post.image.url }}" alt="{{ post.title }}">
+  
+  <!-- Like Button and Like Count -->
+  <div id="like-section">
+    <button id="like-button" data-post-id="{{ post.id }}">
+      Like
+    </button>
+    <span id="like-count">{{ post.like_set.count }}</span> Likes
+  </div>
+
+  <hr>
+  
+  <!-- Comments Section -->
+  <h2>Comments</h2>
+  <div id="comments">
+    {% for comment in post.comments.all %}
+      <div class="comment">
+        <p><strong>{{ comment.author }}</strong></p>
+        <p>{{ comment.text }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <hr>
+
+  <!-- Add Comment Form -->
+  <h3>Add a new comment:</h3>
+  <form method="post" action="{% url 'add_comment_to_post' post.pk %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add comment</button>
+  </form>
+{% endblock %}
+
+<script src="{% static 'js/likeFeature.js' %}"></script>
